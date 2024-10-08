@@ -1,5 +1,6 @@
 package com.example.osc_test.osc
 
+import android.util.Log
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
@@ -16,6 +17,7 @@ class OSCManager(private val ipAddress: String, private val port: Int) {
             try {
                 val messageBytes = createOSCMessage(address, arguments)
                 val packet = DatagramPacket(messageBytes, messageBytes.size, inetAddress, port)
+                Log.d("OSCManagerTest", "Sending message to $ipAddress:$port \n packet: $packet")
                 socket.send(packet)
             } catch (e: Exception) {
                 e.printStackTrace()
